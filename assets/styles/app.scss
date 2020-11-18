@@ -1,0 +1,100 @@
+
+// @import "~font-awesome"; // fichier scss dans node_modules
+@import "~bootstrap/scss/bootstrap"; //fichier scss dans node_modules
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+html, body
+{
+    font-family: 'Montserrat', sans-serif;
+    @extend .bg-white;
+}
+
+.form-control::placeholder { /* available on Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #959595;
+    opacity: 1; /* Firefox */
+}
+
+.labelDisplayNone
+{
+    label
+    {
+        display: none;
+    }
+}
+
+.radioCursor
+{
+    cursor: default;
+}
+
+// ----------------------------
+
+:before,
+:after {
+    box-sizing: border-box;
+}
+
+.animation:hover {
+    animation: text-shadow 1.5s ease-in-out infinite;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.animation {
+    animation-play-state: paused;
+}
+
+@keyframes text-shadow {
+    0% {  
+        transform: translateY(0);
+        text-shadow: 
+            0 0 0 #0c2ffb, 
+            0 0 0 #2cfcfd, 
+            0 0 0 #fb203b, 
+            0 0 0 #fefc4b;
+    }
+
+    20% {  
+        transform: translateY(-1em);
+        text-shadow: 
+            0 0.125em 0 #0c2ffb, 
+            0 0.25em 0 #2cfcfd, 
+            0 -0.125em 0 #fb203b, 
+            0 -0.25em 0 #fefc4b;
+    }
+
+    40% {  
+        transform: translateY(0.5em);
+        text-shadow: 
+            0 -0.0625em 0 #0c2ffb, 
+            0 -0.125em 0 #2cfcfd, 
+            0 0.0625em 0 #fb203b, 
+            0 0.125em 0 #fefc4b;
+    }
+    
+   60% {
+        transform: translateY(-0.25em);
+        text-shadow: 
+            0 0.03125em 0 #0c2ffb, 
+            0 0.0625em 0 #2cfcfd, 
+            0 -0.03125em 0 #fb203b, 
+            0 -0.0625em 0 #fefc4b;
+    }
+
+    80% {  
+        transform: translateY(0);
+        text-shadow: 
+            0 0 0 #0c2ffb, 
+            0 0 0 #2cfcfd, 
+            0 0 0 #fb203b, 
+            0 0 0 #fefc4b;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+}

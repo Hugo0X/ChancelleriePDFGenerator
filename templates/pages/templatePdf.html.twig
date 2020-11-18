@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .btn-group
+            { 
+                width: 100%; 
+            }
+        </style>
+    </head>
+{% block body %}
+
+            <div class='text-center h5'>
+                <p class='m-1'>DIRECTION GENERALE DE LA POLICE NATIONALE</p>
+                <p class='m-1'>DIRECTION CENTRALE DE LA POLICE AUX FRONTIERES</p>
+                <p class='m-1'>DIRECTION INTERDEPARTEMENTALE</p>
+                <p class='m-1'>DE LA POLICE AUX FRONTIERES</p>
+                <p class='m-1'>DE STRASBOURG</p>
+                <p class='m-1'>---</p>
+                <p class='m-1'>S.P.A.F. AEROPORT DE STRASBOURG</p>
+                <p class='mt-1 text-right mr-5'>Le {{ "now"|date("d/m/Y") }}</p>
+            </div>
+
+            <div class='text-center h4'>
+                <p class='m-1'>NOTE DE SIGNALEMENT</p>
+                <p class='m-1'>NON RESPECT DE LA DURÉE DE SÉJOUR AUTORISE</p>
+                <p class='m-1'>ETRANGER EN SITUATION IRREGULIERE DETECTE</p>
+                <p class='m-1'>LORS DU FRANCHISSEMENT D'UNE FRONTIÈRE EXTÉRIEURE</p>
+            </div>            
+
+            
+            <div class='mt-5 mx-5 py-2 px-5 border h4'>
+                <p class='m-1'>NOM: {{ app.session.get('firstName') }} PRÉNOM: {{ app.session.get('lastName') }}</p>
+                <p class='m-1'>né{{ feminine(app.session.get('gender')) }} le: {{ app.session.get('dateBorn') }} à: {{ app.session.get('placeBorn') }}</p>      
+                <p class='m-1'>de nationalité{{ feminine(app.session.get('gender')) }}: {{ app.session.get('nationality') }}</p>
+                <p class='m-1'>Genre: {{ app.session.get('gender') }}</p>
+                <p class='m-1'>Demeurant: {{ app.session.get('address') }}</p>
+                <p class='m-1'>Profession: {{ app.session.get('job') }}</p>
+            </div>
+
+            <div class='mt-5 mx-5 py-2 px-5 border h4'>
+                <p class='m-1'>Contrôlé{{ feminine(app.session.get('gender')) }} au poste frontière de l'Aéroport de Strasbourg</p>
+                <p class='m-1'>le: {{ app.session.get('dateControl') ~ ' à ' ~ app.session.get('timeControl')}}</p>    
+                <p class='m-1'>Départ le: {{ app.session.get('dateTimeDepartureFlight')}}</p>
+                <p class='m-1'>sur le vol: {{ app.session.get('idFlight') }}</p>
+                <p class='m-1'>à destination de: {{ app.session.get('destinationFlight') }}</p>
+            </div>
+
+            <div class='mt-5 mx-5 py-2 px-5 border h4'>
+                <p class='m-1'>Titre d'identité ou de voyage: </p>
+                <p class='m-1'>Passeport n° : {{ app.session.get('idPassport') }} valable jusqu'au {{ app.session.get('dateMaxValadidy') }}</p>
+                <p class='m-1'>Délivré par: {{ app.session.get('countryPassport') }}</p>
+                <p class='m-1'>Si nationalité soumise à visa :</p>
+                <p class='m-1'>visa {{ app.session.get('nameVisa') }} type {{ app.session.get('typeVisa') }} n°: {{ app.session.get('idVisa') }} délivré le: {{ app.session.get('dateDelevery') }}</p>
+                <p class='m-1'>par: {{ app.session.get('countryVisa') }}</p>
+                <p class='m-1'>Entrée sur le territoire français le: {{ app.session.get('dateEntry') }}</p>
+                <p class='m-1'>Entrée {{ app.session.get('typeEntry') }}</p>
+                <p class='m-1'>Durée de dépassement de séjour autorisé: {{ app.session.get('lenghtStay') }}</p>
+                <p class='m-1'>Perception de droits de chancellerie, montant: {{ app.session.get('penality') }}</p>
+            </div>
+
+            <p class="mt-4 ml-5 pl-5 h5">{{app.session.get('userGrade') ~ ' ' ~ app.session.get('userFullName') }}<p>
+
+{% endblock %}

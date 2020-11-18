@@ -1,0 +1,16 @@
+{% include 'pages/templatePdf.html.twig' %}
+
+{% block body %}
+
+<div class="btn-group">
+        <a href={{ path('app_pdf_home') }} class="text-decoration-none btn btn-danger btn-lg">Retour</a>
+        <a onclick="redirectHome()" href={{ path('app_pdf_create') }} class="text-decoration-none btn btn-primary btn-lg">Générer</a>
+</div>
+       <script>
+        function redirectHome() {          
+            setTimeout(function(){ window.location = '{{ path('app_pdf_home') }}'; }, 5000);
+        }
+       </script>   
+{% endblock %}
+    </body>
+</html>

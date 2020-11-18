@@ -1,0 +1,4 @@
+# translations/validators.en.yaml
+PdfEntity.not_blank: Ce champs ne peut pas être vide.
+PdfEntity.minLenght: La longueur minimal est de {{ limit }} caractères
+PdfEntity.maxLenght: La longueur maximal est de {{ limit }} caractères

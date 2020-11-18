@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('/site.webmanifest') }}">
+        <meta charset="UTF-8">     
+        <title>{% block title %}{% endblock %}</title>
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+
+        {% block body %}{% endblock %}
+            
+        {% block javascripts %}
+       
+
+
+            {{ encore_entry_script_tags('app') }}
+
+                {#  <script src="/build/runtime.js"></script> #}
+                {#  <script src="/build/app.js"></script> #}
+        {% endblock %}
+    </body> 
+</html>

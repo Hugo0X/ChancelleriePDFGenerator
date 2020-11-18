@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Formulaire des droits de chancelerie' %}
+
+{% block body %}
+
+<h1 class='h2 my-5 text-center font-weight-bold'>Formulaire des droits de chancelerie</h1>
+
+<div class='col-md-6 mx-auto'>        
+            {{ form_start(form) }}
+                
+                <div class="mt-2 border-top border-dark form-group">
+                    <p class="h4">Identité</p>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            {{ form_row(form.lastName, {'label': 'Nom', 'attr': {'placeholder': 'McClain'}}) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.firstName, { 'label': 'Prénom', 'attr': {'placeholder': 'John'}}) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.placeBorn, { 'label': 'Lieu de naissance', 'attr': {'placeholder': 'New-York'}}) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.dateBorn, { 'label': 'Date de naissance' }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.nationality, { 'label': 'Nationalité', 'attr': {'placeholder': 'Americaine'}}) }}
+                        </div>
+
+                        <div class="col-md-6">                                	
+                            {{ form_label(form.gender, 'Genre') }}       
+                                <div class="d-flex flex-row">        
+                                    <div class="input-group radioCursor animation" onclick="checkRadioMale();">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text labelDisplayNone pl-3 pb-3">
+                                                {{ form_widget(form.gender[0]) }}
+                                            </div>
+                                        </div>
+                                            <p class="form-control">Homme<p>
+                                    </div>
+                                    <div class="input-group radioCursor animation" onclick="checkRadioFemale();">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text labelDisplayNone pl-3 pb-3">
+                                                {{ form_widget(form.gender[1]) }}
+                                            </div>
+                                        </div>
+                                            <p class="form-control">Femme<p>
+                                    </div>                     
+                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.address, { 'label': 'Adresse', 'attr': {'placeholder': '666 Nakatomi Plaza à LosAngeles'}}) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.job, { 'label': 'Emploi', 'attr': {'placeholder': 'Detective de police'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-2 border-top border-dark">
+                    <p class="h4">Vol</p>
+                    <div class="form-row">
+                        <div class="col-md-6 d-flex flex-row align-items-center">
+                            <div class="">
+                                {{ form_row(form.dateControl, { 'label': 'Date et heure de contôle' }) }}   
+                            </div>
+                            <div class="mt-3">
+                                    {{ form_widget(form.timeControl) }} 
+                            </div>           
+                        </div>
+                        {# <div class="col-md-6 d-flex flex-row align-items-center">
+                            <div class="">
+                                {{ form_row(form.dateDepartureFlight, { 'label': 'Date et heure de départ' }) }}   
+                            </div>
+                            <div class="mt-3">
+                                    {{ form_widget(form.timeDepartureFlight) }} 
+                            </div>           
+                        </div> #}
+                        <div class="col-md-6">
+                            {{ form_row(form.idFlight, { 'label': 'Numéro', 'attr': {'placeholder': 'AF1234'} }) }}
+                        </div>
+                        {# <div class="col-md-6">
+                            {{ form_row(form.destinationFlight, { 'label': 'Destination', 'attr': {'placeholder': 'Lyon FRANCE'}  }) }}
+                        </div> #}
+                    </div>
+                </div>
+
+                <div class="mt-2 border-top border-dark">
+                    <p class="h4">Passeport</p>
+                    <div class="form-row">            
+                        <div class="col-md-6">
+                            {{ form_row(form.idPassport, { 'label': 'Identifiant', 'attr': {'placeholder': '12AB00035'}  }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.dateMaxValadidy, { 'label': 'Fin de validité'}) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.countryPassport, { 'label': 'Pays émetteur', 'attr': {'placeholder': 'France'} }) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-2 border-top border-dark">
+                    <p class="h4">Visa</p>
+                    <div class="form-row">   
+                        <div class="col-md-4 mb-3">
+                            {{ form_row(form.nameVisa, { 'label': 'Pays émetteur', 'attr': {'placeholder': 'France'} }) }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            {{ form_row(form.typeVisa, { 'label': 'Type' }) }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            {{ form_row(form.idVisa, { 'label': 'Identifiant', 'attr': {'placeholder': '123456789'}  }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.countryVisa, { 'label': 'Administration émettrice', 'attr': {'placeholder': 'Consulat Général de France'}  }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.dateDelevery, { 'label': 'Date de delivrance' }) }}
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="mt-2 border-top border-dark">
+                    <p class="h4">Entrée</p>
+                    <div class="form-row">      
+                        <div class="col-md-6">
+                            {{ form_row(form.dateEntry, { "label": "Date d'entrée sur le territoire français" }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.typeEntry, { 'label': "Type d'entrée" }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.lenghtStay, { 'label': 'Durée supèrieur à 30 jours ?' }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.penality, { 'label': 'Pénalité', 'attr': {'placeholder': '198'}  }) }}
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="mt-2 border-top border-dark">
+                    <p class="h4">Auteur</p>
+                    <div class="form-row">      
+                        <div class="col-md-6">
+                            {{ form_row(form.userGrade, { "label": "Grade" }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.userFullName, { 'label': "NOM et prénom", 'attr': {'placeholder': 'DUPONT Jean'} }) }}
+                        </div>
+                    </div>
+                </div>
+
+        <button type="submit" class="my-3 btn-lg btn btn-primary btn-block">Générer</button>
+        {{ form_end(form) }}                     
+</div>                                           
+
+
+<script>
+        function checkRadioMale() {
+        document.getElementById("pdf_generator_gender_0").checked = true;
+        }
+
+        function checkRadioFemale() {
+        document.getElementById("pdf_generator_gender_1").checked = true;
+        }
+</script>
+
+            
+{% endblock %}
