@@ -13,7 +13,7 @@ class ApiController extends AbstractController
     public function callApi($idFlight)
     {
         $queryString = http_build_query([
-        'access_key' => '2bb47cef109df0fa5a5512886e6c0dee'
+        'access_key' => 'key'
         ]);
         
         $ch = curl_init('http://api.aviationstack.com/v1/flights?' . $queryString . '&flight_iata='. $idFlight);
