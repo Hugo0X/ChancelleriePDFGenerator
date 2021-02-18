@@ -20,14 +20,14 @@ class PdfGenerator extends AbstractType
     {
         
         $builder
-            ->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
+            ->add('firstName', TextType::class, ['attr' => ['minlength' => 2, 'maxlength' => 30]])
+            ->add('lastName', TextType::class, ['attr' => ['minlength' => 2, 'maxlength' => 30]])
             ->add('dateBorn', DateType::class, [
                 'widget' => 'single_text',
                 // 'data' => new \DateTime('01/01/1990')
                 ])
-            ->add('placeBorn', TextType::class)
-            ->add('nationality', TextType::class)
+            ->add('placeBorn', TextType::class, ['attr' => ['minlength' => 2, 'maxlength' => 50]])
+            ->add('nationality', TextType::class, ['attr' => ['minlength' => 3, 'maxlength' => 50]])
             ->add('gender',ChoiceType::class,[ // à modifier
                     'choices' => [
                         'Masculin' =>'Masculin',
@@ -37,8 +37,8 @@ class PdfGenerator extends AbstractType
                     'choice_label' => false,
                     'data' => 'Masculin'
                 ])
-            ->add('address', TextType::class)
-            ->add('job', TextType::class)
+            ->add('address', TextType::class, ['attr' => ['minlength' => 2, 'maxlength' => 70]])
+            ->add('job', TextType::class, ['attr' => ['minlength' => 2, 'maxlength' => 50]])
             ->add('dateControl', DateType::class , [
                 'widget' => 'single_text',
                 'data' => new \DateTime()])
@@ -53,22 +53,22 @@ class PdfGenerator extends AbstractType
                 // 'input'  => 'datetime',
                 // 'widget' => 'choice',
                 // 'data' => new \DateTime()]) 
-            ->add('idFlight', TextType::class)
+            ->add('idFlight', TextType::class, ['attr' => ['minlength' => 5, 'maxlength' => 6]])
             // ->add('destinationFlight', TextType::class) // à remplacer par l'API
-            ->add('idPassport', TextType::class)
+            ->add('idPassport', TextType::class, ['attr' => ['minlength' => 5, 'maxlength' => 30]])
             ->add('dateMaxValadidy', DateType::class, [
                 'widget' => 'single_text',])
-            ->add('countryPassport', TextType::class)
-            ->add('nameVisa', TextType::class)
+            ->add('countryPassport', TextType::class, ['attr' => ['minlength' => 3, 'maxlength' => 50]])
+            ->add('nameVisa', TextType::class, ['attr' => ['minlength' => 2, 'maxlength' => 50]])
             ->add('typeVisa', ChoiceType::class, [
                 'choices'  => [
                     'C' => 'C',
                     'D' => 'D',]])
-            ->add('idVisa', TextType::class)
+            ->add('idVisa', TextType::class, ['attr' => ['minlength' => 5, 'maxlength' => 30]])
             ->add('dateDelevery', DateType::class, [
                 'widget' => 'single_text',
                 ])
-            ->add('countryVisa', TextType::class)
+            ->add('countryVisa', TextType::class, ['attr' => ['minlength' => 3, 'maxlength' => 50]])
             ->add('dateEntry', DateType::class, [
                 'widget' => 'single_text',])
             ->add('typeEntry', ChoiceType::class, [
@@ -79,14 +79,14 @@ class PdfGenerator extends AbstractType
                 'choices'  => [
                     'Oui' => '+ de 30 jours',
                     'Non' => '- de 30 jours',]])
-            ->add('penality', IntegerType::class)
+            ->add('penality', IntegerType::class, ['attr' => ['minlength' => 1, 'maxlength' => 7]])
             ->add('userGrade', ChoiceType::class, [
                 'choices'  => [
                     'MJR - Major' => 'MJR',
                     'B/C - Brigadier-Chef' => 'B/C',
                     'BG - Brigadier' => 'BG',
                     'S/B - Sous-Brigadier' => 'S/B',]])
-            ->add('userFullName', TextType::class)
+            ->add('userFullName', TextType::class, ['attr' => ['minlength' => 2, 'maxlength' => 50]])
         ;
     }
 

@@ -15,7 +15,7 @@
 
                     {% for i in 1..apis|length %}
                         <div class="row">
-                        <a href="{{ path('app_pdf_formSeveralFlightFound', {dateTimeDepartureFlight: apis[0][i-1], destinationFlight: apis[1][i-1] }) }}" class="text-decoration-none  mt-5 btn-lg btn btn-outline-primary btn-block">
+                        <a href="{{ path('app_pdf_formSeveralFlightFound', {dateTimeDepartureFlight: apis[0][i-1], destinationFlight: apis[1][i-1], token: csrf_token('flightFound')} ) }}" class="text-decoration-none  mt-5 btn-lg btn btn-outline-primary btn-block">
                             <p class="mt-3">Le <span class="font-weight-bold">{{ apis[0][i-1] }}</span>
                             à destination de <span class="font-weight-bold">{{ apis[1][i-1] }}</span></p>
                         </a>

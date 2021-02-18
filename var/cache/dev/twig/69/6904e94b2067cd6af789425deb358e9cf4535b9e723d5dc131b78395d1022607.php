@@ -90,44 +90,42 @@ class __TwigTemplate_31c7a75808db50ef5fba7f23c1a54925066aaa07b84d422b2809cdb68cf
 <h2 class='h3 mt-5 text-center font-weight-bold text-success'>Plusieurs vols trouvés</h2>
 <p class='h6 mt-3 text-center font-weight-bold text-secondary'>Cliquez sur le vol correspondant</p>
 
-<div class=\"row\">
-    <div class='col-md-6 mx-auto'>
-            <div class=\"mt-2 border-top border-dark\">
-                <p class=\"h4 mb-4\">Vol n° <span class=\"font-weight-bold text-info\">";
-        // line 14
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 14, $this->source); })()), "session", [], "any", false, false, false, 14), "get", [0 => "idFlight"], "method", false, false, false, 14), "html", null, true);
+<div class='col-md-6 mx-auto'>
+        <div class=\"mt-2 border-top border-dark\">
+            <p class=\"h4 mb-4\">Vol n° <span class=\"font-weight-bold text-info\">";
+        // line 13
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "session", [], "any", false, false, false, 13), "get", [0 => "idFlight"], "method", false, false, false, 13), "html", null, true);
         echo "</span></p>
 
 
-                        ";
-        // line 17
+                    ";
+        // line 16
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(range(1, twig_length_filter($this->env, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 17, $this->source); })()))));
+        $context['_seq'] = twig_ensure_traversable(range(1, twig_length_filter($this->env, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 16, $this->source); })()))));
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+            // line 17
+            echo "                        <div class=\"row\">
+                        <a href=\"";
             // line 18
-            echo "                            <div class=\"row\">
-                            <a href=\"";
-            // line 19
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pdf_formSeveralFlightFound", ["dateTimeDepartureFlight" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 19, $this->source); })()), 0, [], "array", false, false, false, 19), ($context["i"] - 1), [], "array", false, false, false, 19), "destinationFlight" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 19, $this->source); })()), 1, [], "array", false, false, false, 19), ($context["i"] - 1), [], "array", false, false, false, 19)]), "html", null, true);
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pdf_formSeveralFlightFound", ["dateTimeDepartureFlight" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 18, $this->source); })()), 0, [], "array", false, false, false, 18), ($context["i"] - 1), [], "array", false, false, false, 18), "destinationFlight" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 18, $this->source); })()), 1, [], "array", false, false, false, 18), ($context["i"] - 1), [], "array", false, false, false, 18), "token" => $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("flightFound")]), "html", null, true);
             echo "\" class=\"text-decoration-none  mt-5 btn-lg btn btn-outline-primary btn-block\">
-                                <p class=\"mt-3\">Le <span class=\"font-weight-bold\">";
-            // line 20
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 20, $this->source); })()), 0, [], "array", false, false, false, 20), ($context["i"] - 1), [], "array", false, false, false, 20), "html", null, true);
+                            <p class=\"mt-3\">Le <span class=\"font-weight-bold\">";
+            // line 19
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 19, $this->source); })()), 0, [], "array", false, false, false, 19), ($context["i"] - 1), [], "array", false, false, false, 19), "html", null, true);
             echo "</span>
-                                à destination de <span class=\"font-weight-bold\">";
-            // line 21
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 21, $this->source); })()), 1, [], "array", false, false, false, 21), ($context["i"] - 1), [], "array", false, false, false, 21), "html", null, true);
+                            à destination de <span class=\"font-weight-bold\">";
+            // line 20
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["apis"]) || array_key_exists("apis", $context) ? $context["apis"] : (function () { throw new RuntimeError('Variable "apis" does not exist.', 20, $this->source); })()), 1, [], "array", false, false, false, 20), ($context["i"] - 1), [], "array", false, false, false, 20), "html", null, true);
             echo "</span></p>
-                            </a>
-                            </div>
-                        ";
+                        </a>
+                        </div>
+                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 25
-        echo "
-    </div>
+        // line 24
+        echo "        </div>
 </div>
 
 
@@ -152,7 +150,7 @@ class __TwigTemplate_31c7a75808db50ef5fba7f23c1a54925066aaa07b84d422b2809cdb68cf
 
     public function getDebugInfo()
     {
-        return array (  129 => 25,  119 => 21,  115 => 20,  111 => 19,  108 => 18,  104 => 17,  98 => 14,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  128 => 24,  118 => 20,  114 => 19,  110 => 18,  107 => 17,  103 => 16,  97 => 13,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -167,22 +165,20 @@ class __TwigTemplate_31c7a75808db50ef5fba7f23c1a54925066aaa07b84d422b2809cdb68cf
 <h2 class='h3 mt-5 text-center font-weight-bold text-success'>Plusieurs vols trouvés</h2>
 <p class='h6 mt-3 text-center font-weight-bold text-secondary'>Cliquez sur le vol correspondant</p>
 
-<div class=\"row\">
-    <div class='col-md-6 mx-auto'>
-            <div class=\"mt-2 border-top border-dark\">
-                <p class=\"h4 mb-4\">Vol n° <span class=\"font-weight-bold text-info\">{{ app.session.get('idFlight') }}</span></p>
+<div class='col-md-6 mx-auto'>
+        <div class=\"mt-2 border-top border-dark\">
+            <p class=\"h4 mb-4\">Vol n° <span class=\"font-weight-bold text-info\">{{ app.session.get('idFlight') }}</span></p>
 
 
-                        {% for i in 1..apis|length %}
-                            <div class=\"row\">
-                            <a href=\"{{ path('app_pdf_formSeveralFlightFound', {dateTimeDepartureFlight: apis[0][i-1], destinationFlight: apis[1][i-1] }) }}\" class=\"text-decoration-none  mt-5 btn-lg btn btn-outline-primary btn-block\">
-                                <p class=\"mt-3\">Le <span class=\"font-weight-bold\">{{ apis[0][i-1] }}</span>
-                                à destination de <span class=\"font-weight-bold\">{{ apis[1][i-1] }}</span></p>
-                            </a>
-                            </div>
-                        {% endfor %}
-
-    </div>
+                    {% for i in 1..apis|length %}
+                        <div class=\"row\">
+                        <a href=\"{{ path('app_pdf_formSeveralFlightFound', {dateTimeDepartureFlight: apis[0][i-1], destinationFlight: apis[1][i-1], token: csrf_token('flightFound')} ) }}\" class=\"text-decoration-none  mt-5 btn-lg btn btn-outline-primary btn-block\">
+                            <p class=\"mt-3\">Le <span class=\"font-weight-bold\">{{ apis[0][i-1] }}</span>
+                            à destination de <span class=\"font-weight-bold\">{{ apis[1][i-1] }}</span></p>
+                        </a>
+                        </div>
+                    {% endfor %}
+        </div>
 </div>
 
 

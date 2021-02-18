@@ -214,7 +214,7 @@ class PdfEntity
      * @Assert\NotBlank(message="PdfEntity.not_blank")
      * @Assert\Type("string")
      * @Assert\Length(
-     *      min = 2,
+     *      min = 3,
      *      max = 50,
      *      minMessage = "PdfEntity.minLenght",
      *      maxMessage = "PdfEntity.maxLenght",
@@ -245,7 +245,7 @@ class PdfEntity
      * @Assert\Type("int")
      * @Assert\Length(
      *      min = 1,
-     *      max = 5,
+     *      max = 7,
      *      minMessage = "PdfEntity.minLenght",
      *      maxMessage = "PdfEntity.maxLenght",
      *      allowEmptyString = false

@@ -13,9 +13,8 @@ class ApiController extends AbstractController
     public function callApi($idFlight)
     {
         $queryString = http_build_query([
-        'access_key' => '%env(API_KEY)%'
+        'access_key' => $_ENV['API_KEY']
         ]);
-        
         $ch = curl_init('http://api.aviationstack.com/v1/flights?' . $queryString . '&flight_iata='. $idFlight);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
@@ -24,13 +23,13 @@ class ApiController extends AbstractController
         
 
         $api_result = json_decode($json, true);
-        
-        if(!$api_result)
+
+        if(!$api_result)// || $api_result['error']
         {
             return false; // problème de connection
         }
         else
-        { 
+        {
             $nbrResult = count($api_result['data']);
             if($nbrResult == 0)
             {

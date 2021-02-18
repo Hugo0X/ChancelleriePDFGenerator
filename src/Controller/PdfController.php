@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PdfController extends AbstractController
 {   
-    //  ! add html validation (length) ! back register old data in the form ! (( script in built ))
+    // ! back register old data in the form ! (( script in built ))
 
     private $session;
 
@@ -116,7 +116,7 @@ class PdfController extends AbstractController
         htmlspecialchars($datas['dateTimeDepartureFlight'] = $datas['dateDepartureFlight'] .' à '. $datas['hour'] .'h'. $datas['minute']);
             unset($datas['dateDepartureFlight']);
             unset($datas['hour']);
-            unset($datas['minute']);;
+            unset($datas['minute']);
 
         if(strlen($datas['dateTimeDepartureFlight']) != 19 || strlen($datas['destinationFlight']) < 3 || strlen($datas['destinationFlight']) > 50 || strlen($datas['destinationFlight']) != (5 || 6))
         {
@@ -138,12 +138,11 @@ class PdfController extends AbstractController
      */
     public function formSeveralFlightFound(Request $request): Response
     {
-        if($this->session->get('nextStep') != 'severalFlightFound')
+        if($this->session->get('nextStep') != 'severalFlightFound' || !$this->isCsrfTokenValid('flightFound', $request->query->get('token')))
         {
             $this->session->invalidate();
             return $this->redirectToRoute('app_pdf_home');
         }
-
         
         htmlspecialchars($datas['dateTimeDepartureFlight'] = $request->query->get('dateTimeDepartureFlight')); // must be simplify
         htmlspecialchars($datas['destinationFlight'] = $request->query->get('destinationFlight'));
