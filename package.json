@@ -1,9 +1,9 @@
 {
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.31.0",
-        "core-js": "^3.0.0",
+        "@symfony/webpack-encore": "^0.31.1",
+        "core-js": "^3.8.3",
         "regenerator-runtime": "^0.13.2",
-        "webpack-notifier": "^1.6.0"
+        "webpack-notifier": "^1.13.0"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -14,12 +14,13 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@popperjs/core": "^2.5.4",
-        "bootstrap": "^4.5.3",
+        "@popperjs/core": "^2.7.0",
+        "bootstrap": "^4.6.0",
         "jquery": "^3.5.1",
         "moment": "^2.29.1",
+        "node-notifier": "^9.0.0",
         "node-sass": "^5.0.0",
         "popper.js": "^1.16.1",
-        "sass-loader": "^10.0.5"
+        "sass-loader": "^10.1.1"
     }
 }

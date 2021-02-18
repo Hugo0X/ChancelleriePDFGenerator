@@ -4,13 +4,20 @@
 .env.local
 .env.local.php
 .env.*.local
+config/secrets/prod/
 public/
 var/
 vendor/
+migrations/
 ###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
 
 ###> symfony/webpack-encore-bundle ###
 node_modules/
 npm-debug.log
-yarn-error.log
 ###< symfony/webpack-encore-bundle ###
