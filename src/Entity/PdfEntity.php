@@ -575,7 +575,7 @@ class PdfEntity
                 'address'               => $this->address(),
                 'job'                   => $this->job(),
                 'dateControl'           => $this->dateControl()->format('d/m/Y'),
-                'timeControl'           => $this->timeControl()->format('H:i'),
+                'timeControl'           => $this->timeControl()->format('H\hi'),
                 // 'dateDepartureFlight'   => $this->dateDepartureFlight()->format('d/m/Y'),
                 // 'timeDepartureFlight'   => $this->timeDepartureFlight()->format('H:i'),
                 'idFlight'              => $this->idFlight(),

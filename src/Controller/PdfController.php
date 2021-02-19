@@ -56,6 +56,8 @@ class PdfController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->session->invalidate();
+            
             $pdf = $form->getData();
             
             $pdf = $pdf->allGetters();
@@ -73,20 +75,20 @@ class PdfController extends AbstractController
             if(!$resultApi) // maybe use switch instead
             {
                 $this->session->set('nextStep','flightNotFound');
-                return $this->render('pages/formFlightoption.html.twig');      
+                return $this->redirectToRoute('app_pdf_formFlightNotFound');
             }
             elseif(count($resultApi[1]) > 1)
             {
                 $this->session->set('nextStep','severalFlightFound');
-                return $this->render('pages/formSeveralFlightFound.html.twig', ['apis' =>  $resultApi]);
+                return $this->redirectToRoute('app_pdf_formSeveralFlightFound', ['apis' =>  $resultApi]); //add xsrf
             }
             elseif($resultApi)
             {
                 $this->session->set('dateTimeDepartureFlight', $resultApi[0][0]);
                 $this->session->set('destinationFlight', $resultApi[1][0]);
                 
-                $this->session->set('nextStep','create');
-                return $this->render('pages/preview.html.twig');
+                $this->session->set('nextStep','preview');
+                return $this->redirectToRoute('app_pdf_preview');
             }
             else // normalement n'arrive pas
             {
@@ -101,36 +103,43 @@ class PdfController extends AbstractController
     }
 
     /**
-     * @Route("/formFlightNotFound", name="app_pdf_formFlightNotFound", methods={"POST"})
+     * @Route("/formFlightNotFound", name="app_pdf_formFlightNotFound", methods={"GET", "POST"})
      */
     public function formFlightNotFound(Request $request): Response
     {
-        if($this->session->get('nextStep') != 'flightNotFound' || !$this->isCsrfTokenValid('pdf_FlightNotFound', $request->request->get('csrf_token')))
+
+        if($this->session->get('nextStep') != 'flightNotFound')
         {
             $this->session->invalidate();
             return $this->redirectToRoute('app_pdf_home');
         }
 
-        $datas = $request->request->all();
-
-        htmlspecialchars($datas['dateTimeDepartureFlight'] = $datas['dateDepartureFlight'] .' à '. $datas['hour'] .'h'. $datas['minute']);
-            unset($datas['dateDepartureFlight']);
-            unset($datas['hour']);
-            unset($datas['minute']);
-
-        if(strlen($datas['dateTimeDepartureFlight']) != 19 || strlen($datas['destinationFlight']) < 3 || strlen($datas['destinationFlight']) > 50 || strlen($datas['destinationFlight']) != (5 || 6))
+        if($this->isCsrfTokenValid('pdf_FlightNotFound', $request->request->get('csrf_token')))
         {
-            $this->session->invalidate();
-            return $this->redirectToRoute('app_pdf_home');
-        }
+            $datas = $request->request->all();
 
-        foreach($datas as $data => $val)
-        {
-            $this->session->set($data,$val);
-        }
+            htmlspecialchars($datas['dateTimeDepartureFlight'] = $datas['dateDepartureFlight'] .' à '. $datas['hour'] .'h'. $datas['minute']);
+                unset($datas['dateDepartureFlight']);
+                unset($datas['hour']);
+                unset($datas['minute']);
 
-        $this->session->set('nextStep','create');
-        return $this->render('pages/preview.html.twig');
+            if(strlen($datas['dateTimeDepartureFlight']) != 19 || strlen($datas['destinationFlight']) < 3 || strlen($datas['destinationFlight']) > 50 || strlen($datas['destinationFlight']) != (5 || 6))
+            {
+                $this->session->invalidate();
+                return $this->redirectToRoute('app_pdf_home');
+            }
+
+            foreach($datas as $data => $val)
+            {
+                $this->session->set($data,$val);
+            }
+
+            $this->session->set('nextStep','preview');
+            return $this->redirectToRoute('app_pdf_preview');  
+        }
+    
+        return $this->render('pages/formFlightoption.html.twig');      
+
     }
 
     /**
@@ -138,28 +147,48 @@ class PdfController extends AbstractController
      */
     public function formSeveralFlightFound(Request $request): Response
     {
-        if($this->session->get('nextStep') != 'severalFlightFound' || !$this->isCsrfTokenValid('flightFound', $request->query->get('token')))
-        {
-            $this->session->invalidate();
-            return $this->redirectToRoute('app_pdf_home');
-        }
-        
-        htmlspecialchars($datas['dateTimeDepartureFlight'] = $request->query->get('dateTimeDepartureFlight')); // must be simplify
-        htmlspecialchars($datas['destinationFlight'] = $request->query->get('destinationFlight'));
-
-        if(strlen($datas['dateTimeDepartureFlight']) != 19 || strlen($datas['destinationFlight']) < 3 || strlen($datas['destinationFlight']) > 50)
+        if($this->session->get('nextStep') != 'severalFlightFound')
         {
             $this->session->invalidate();
             return $this->redirectToRoute('app_pdf_home');
         }
 
-        foreach($datas as $data => $val)
+        $apis = $request->query->get('apis');
+
+        if($this->isCsrfTokenValid('flightFound', $request->query->get('token')))
         {
-            $this->session->set($data, $val);
+            htmlspecialchars($datas['dateTimeDepartureFlight'] = $request->query->get('dateTimeDepartureFlight')); // must be simplify
+            htmlspecialchars($datas['destinationFlight'] = $request->query->get('destinationFlight'));
+            
+            if(strlen($datas['dateTimeDepartureFlight']) != 19 || strlen($datas['destinationFlight']) < 3 || strlen($datas['destinationFlight']) > 50)
+            {
+                $this->session->invalidate();
+                return $this->redirectToRoute('app_pdf_home');
+            }
+
+            foreach($datas as $data => $val)
+            {
+                $this->session->set($data, $val);
+            }
+
+            $this->session->set('nextStep','preview');
+            return $this->redirectToRoute('app_pdf_preview');
+        }
+        return $this->render('pages/formSeveralFlightFound.html.twig', ['apis' => $apis]); 
+    }
+
+    /**
+     * @Route("/preview", name="app_pdf_preview", methods={"GET"})
+     */
+    public function preview(Request $request): Response
+    {
+        if($this->session->get('nextStep') != 'preview')
+        {
+            $this->session->invalidate();
+            return $this->redirectToRoute('app_pdf_home');
         }
 
         $this->session->set('nextStep','create');
         return $this->render('pages/preview.html.twig');
     }
- 
 }

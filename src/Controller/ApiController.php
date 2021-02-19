@@ -46,9 +46,7 @@ class ApiController extends AbstractController
                         $departureDate[] = $api_result['data'][$nbrResultChecked]['departure']['scheduled'];
                         $destination[] = $api_result['data'][$nbrResultChecked]['arrival']['airport'] . ' ' . $api_result['data'][$nbrResultChecked]['arrival']['iata'];
 
-                        $departureDate[$nbrResultChecked] = str_replace('-','/',$departureDate[$nbrResultChecked]);
-                        $departureDate[$nbrResultChecked] = str_replace('T',' à ',$departureDate[$nbrResultChecked]);
-                        $departureDate[$nbrResultChecked] = substr($departureDate[$nbrResultChecked], 0, -9);
+                        $departureDate[$nbrResultChecked] = date("d/m/Y \à H\hi", strtotime($departureDate[$nbrResultChecked]));
 
                         $nbrResultChecked++;
                         $resultExist = true;
